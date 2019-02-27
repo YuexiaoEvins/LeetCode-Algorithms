@@ -1,0 +1,38 @@
+class Solution 
+{
+    public int binaryGap(int N) 
+    {
+        int b_n[] = new int[32];
+        for(int i =0; i<32;i++)
+        {
+            b_n[i] = N % 2;
+            N/=2;
+        }
+        int dis = 0;
+        int t_dis=0;
+        int count = 0;
+        int location = 0;
+        
+        for(int i =0;i<32;i++)
+        {
+            if(count==1)
+            {
+                t_dis++;
+            }
+            if(b_n[i]==1)
+            {
+                count++;
+                if(count==2)
+                {
+                    if(dis<t_dis)
+                    {
+                        dis=t_dis;
+                    }
+                    t_dis = 0;
+                    count = 1;
+                }
+            }          
+        }
+        return dis;
+    }
+}
