@@ -1,0 +1,17 @@
+class Solution 
+{
+    public int distributeCandies(int[] candies) 
+    {
+        int candy = 1;
+        Arrays.sort(candies);
+        for(int i = 1; i<candies.length;i++)
+        {
+            if(candies[i-1] != candies[i])
+                candy++;
+        }
+        if(candy >= (candies.length / 2))
+            return candies.length / 2;
+        else
+            return candy;
+    }
+}
