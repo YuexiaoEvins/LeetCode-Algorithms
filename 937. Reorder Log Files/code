@@ -1,0 +1,31 @@
+class Solution 
+{
+    public String[] reorderLogFiles(String[] logs) 
+    {
+        Comparator<String> StrComp = new Comparator<String>()
+        {
+            public int compare(String s1, String s2)
+            {
+                String[] strsplit1 = s1.split(" ",2);
+                String[] strsplit2 = s2.split(" ",2);
+                /*Is the string digit?*/
+                boolean isDigit1 = Character.isDigit(strsplit1[1].charAt(0));
+                boolean isDigit2 = Character.isDigit(strsplit2[1].charAt(0));
+                if(!(isDigit1) && !(isDigit2))
+                {
+                    int compare = strsplit1[1].compareTo(strsplit2[1]);
+                    if(compare == 0)
+                    {
+                        return strsplit1[0].compareTo(strsplit2[0]);
+                    }
+                    //strsplit1[1] not equal strsplit2[1];
+                    return compare;
+                }
+                return isDigit1 ? (isDigit2 ? 0 : 1) : -1; 
+                //not isDigit1 ? (isDigit2 ? 0 : -1) : 1 because it'll let the letter-logs after digit-log
+            }
+        };
+        Arrays.sort(logs,StrComp);
+        return logs;
+    }
+}
